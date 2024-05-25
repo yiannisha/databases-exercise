@@ -1,0 +1,1 @@
+SELECT logout_user($1);
