@@ -50,52 +50,6 @@ project-directory/
 
    Ensure your PostgreSQL server is running and accessible. Create a database and a user with the necessary privileges.
 
-4. **Prepare SQL Queries**
-
-   Create the required SQL query files inside the `queries` directory. Example contents for these files are as follows:
-
-   - `login.sql`:
-     ```sql
-     SELECT role AS login_user FROM users WHERE username = $1 AND password = crypt($2, password);
-     ```
-
-   - `logout.sql`:
-     ```sql
-     -- Optional: Any actions needed on logout
-     ```
-
-   - `add_recipe.sql`:
-     ```sql
-     INSERT INTO recipes (name, description, preparation_time, cooking_time, servings, difficulty, chef_id)
-     VALUES ($1, $2, $3, $4, $5, $6, $7);
-     ```
-
-   - `edit_recipe.sql`:
-     ```sql
-     UPDATE recipes SET name = $1, description = $2, preparation_time = $3, cooking_time = $4, difficulty = $5, meal_group = $6, image_id = $7
-     WHERE id = $8 AND chef_id = (SELECT id FROM users WHERE username = $9);
-     ```
-
-   - `edit_user.sql`:
-     ```sql
-     UPDATE users SET username = $1, password = crypt($2, gen_salt('bf')) WHERE username = $3;
-     ```
-
-   - `clear.sql`:
-     ```sql
-     -- SQL commands to clear the database
-     ```
-
-   - `setup.sql`:
-     ```sql
-     -- SQL commands to set up the database schema and initial data
-     ```
-
-   - `query_*.sql`:
-     ```sql
-     -- Custom queries to be executed based on API request
-     ```
-
 ## Running the Project
 
 1. **Start the server**
