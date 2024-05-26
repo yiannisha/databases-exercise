@@ -55,7 +55,7 @@ const argv = yargs(hideBin(process.argv))
   .argv;
 
 const app = express();
-const port = 3000;
+const app_port = 3000;
 
 const pool = new Pool({
   user: argv.user,
@@ -66,7 +66,7 @@ const pool = new Pool({
 });
 
 // Check if the connection is successful
-pool.on('connect', (client) => console.log('Connected to the database'));
+pool.on('connect', () => console.log('Connected to the database'));
 
 pool.on('error', (err, client) => {
   console.error('Unexpected error on idle client', err);
@@ -115,7 +115,7 @@ pool.connect()
         }
 
         // Start the server after establishing connection
-        app.listen(port, () => {
-            console.log(`Server running on port ${port}`);
+        app.listen(app_port, () => {
+            console.log(`Server running on port ${app_port}`);
         });
     });
